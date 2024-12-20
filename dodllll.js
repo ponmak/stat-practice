@@ -8,7 +8,6 @@ const getFixedValue = (index, max, step) => Math.min(max, (index % (max / step +
 const dollData = dolls.map((doll, index) => ({
   DollId: index + 1,
   Survived: Math.random() > 0.5 ? 1 : 0, // Random survival status
-  Class: doll.rarity || 'Unknown', // Rarity as "Class"
   Type: doll.type || 'Unknown', // Add the doll's type (e.g., AR, SMG)
   Name: doll.codename,
   Sex: 'Female', // Assume all dolls are female
@@ -17,14 +16,13 @@ const dollData = dolls.map((doll, index) => ({
   Favor: getFixedValue(index, 100, 10), // Fixed favor: 0, 10, ..., 100
   Stats: `${doll.stats?.hp || 0}/${doll.stats?.pow || 0}/${doll.stats?.hit || 0}`, // Format key stats
   SkillLevel: getRandomInt(1, 10), // Random skill level between 1 and 10
-  Embarked: 'Factory' // Placeholder
+  Embarked: Math.random() > 0.5 ? 'Base' : 'Frankfurt' // Random embarkation port
 }));
 
 // Convert to CSV
 const headers = [
   'DollId',
   'Survived',
-  'Class',
   'Type',
   'Name',
   'Sex',
